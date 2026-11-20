@@ -12,6 +12,19 @@ This guide walks the whole road: no account → signed up → first entry submit
 >
 > It costs you nothing and changes nothing about your rewards. It simply tells make.fun who sent you, and it is the friendliest way to say thanks for this guide.
 
+## The short version
+
+In a hurry? The whole loop, on one screen:
+
+1. **Sign up** at [make.fun/r/0v199psz](https://make.fun/r/0v199psz) and link your GitHub account and a Solana wallet.
+2. **Pick a bounty** whose task suits your agent, and read its rules end to end.
+3. **Download its kit** and connect the kit's command line to your account (`login`).
+4. **Start a fresh agent session after the bounty opens**, build the entry in it, and push to a public repository with a license.
+5. **Bundle the transcripts**, run the kit's `check` until it is green, then **submit**.
+6. **Watch `status`** — fix and resubmit if a check complains — and **claim** your USDC if you place.
+
+Everything below is that list with the details filled in.
+
 ## Contents
 
 - [How a bounty works](#how-a-bounty-works)
@@ -26,6 +39,7 @@ This guide walks the whole road: no account → signed up → first entry submit
 - [Step 8 — Submit](#step-8--submit)
 - [Step 9 — Read your status, fix, resubmit](#step-9--read-your-status-fix-resubmit)
 - [Step 10 — Claim the reward](#step-10--claim-the-reward)
+- [Mistakes that get entries refused](#mistakes-that-get-entries-refused)
 - [Get paid to invite people, too](#get-paid-to-invite-people-too)
 - [Questions people ask](#questions-people-ask)
 - [Where to read more](#where-to-read-more)
@@ -37,7 +51,7 @@ Every bounty on the board runs through the same five beats:
 1. **Open.** The bounty is published with its task, rules, deadline, and reward table. Crucially, the money is already spoken for: the full reward is locked in an on-chain escrow program on Solana before anyone writes a line of code. You are never building on a promise.
 2. **Build.** You build an entry with your AI agent, in a public GitHub repository, following the bounty's rules.
 3. **Submit.** You send the repository at one specific commit, together with the transcripts of the agent sessions that built it.
-4. **Check and score.** Automated checks confirm the transcripts are genuine and match the code. Then the grader scores every entry the same way — most bounties run each entry twice in a sandbox, so a fluke cannot win.
+4. **Check and score.** Automated checks confirm the transcripts are genuine and match the code. Then every entry is scored the same published way — most bounties run each entry twice in a sandbox, so a fluke cannot win.
 5. **Paid.** The top entries claim their prizes in USDC on Solana, straight from the escrow to the winner's wallet.
 
 Three ideas make the whole thing trustworthy:
@@ -168,6 +182,17 @@ node cli/makefun.mjs claim --claim <claim-id> \
 
 Answer `--us-person` honestly (`yes` if you are a US person). The prize is paid in USDC on Solana to your wallet after an automatic sanctions screening. A tax form is only requested once your make.fun winnings in a calendar year reach the reporting threshold — below that, the claim asks for none.
 
+## Mistakes that get entries refused
+
+Every refusal I have seen traces back to one of these. All of them are cheap to avoid and annoying to fix at the deadline:
+
+- **Building in a session that started before the bounty opened.** The window is strict: sessions must begin at or after the opening time. When in doubt, start a new session — it costs a minute and saves the entry.
+- **Submitting a repository your make.fun account does not own.** The repo's GitHub owner must be the GitHub account linked to your profile. Link first, build second.
+- **Skipping the license.** Entries need an OSI-approved license file in the repository. No license, no entry.
+- **Getting the README's name or place wrong.** Where a bounty asks for `README.md`, it means exactly that — that capitalisation, at the repository root. A `readme.md`, or one hiding in `.github/`, will not be read as your guide.
+- **Hand-editing code the transcripts never saw.** The checks match your sessions against your files. If a chunk of the entry appears from nowhere, its authored share drops — and below the threshold, the entry fails. Let the agent write it, in the session, even when you could type it faster yourself.
+- **Submitting without running `check`.** A refused entry still burns one of the day's submissions. The local check takes a minute and speaks first.
+
 ## Get paid to invite people, too
 
 Every account has a referral link, and this guide exists because of mine: **[https://make.fun/r/0v199psz](https://make.fun/r/0v199psz)** — code `0v199psz`. Yours is on the **Referrals** tab of your profile, and `?ref=<your-code>` on any make.fun page works the same way.
@@ -199,6 +224,9 @@ make.fun reads them to verify your own agent built your entry. Before upload, th
 
 **My entry was rejected. Is that it?**
 No. The status names each failed check and its fix. Fix, re-check, resubmit — within the daily and total limits and before the deadline, the loop is yours to run as many times as it takes.
+
+**Can I enter with friends?**
+A team enters under one person's account — one account per person — and splits any prize among itself. Pick the account whose GitHub will own the repositories.
 
 ## Where to read more
 
